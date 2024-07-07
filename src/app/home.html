@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Réservez votre Voyage</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Réservez votre Voyage</h1>
+    </header>
+    <nav class="nav">
+        <div class="logo">
+            <a href="home.html"><span>Camer</span>Go</a>
+        </div>
+        <div class="nav-links">
+            <a href="#home.html">Accueil</a>
+            <a href="flight.html">Réservation de Vol</a>
+            <a href="hotel.html">Réservation d'Hôtel</a>
+            <a href="car.html">Réservation de Voiture</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Bienvenue sur notre site de réservation de voyage</h2>
+        <p>Nous vous aidons à réserver vos voyages facilement et rapidement. Que ce soit pour un vol, un hôtel ou une voiture de location, nous avons tout ce dont vous avez besoin.</p>
+
+        <div class="service">
+            <h3>Réservation de Vol</h3>
+            <a href="flight.html"><img src="/public/img/depositphotos_3034919-stock-photo-departing-aircraft.jpg" alt="Réservation de Vol"></a>
+            <p>Réservez votre vol vers n'importe quelle destination dans le monde. Cliquez <a href="flight.html">ici</a> pour réserver.</p>
+        </div>
+
+        <div class="service">
+            <h3>Réservation d'Hôtel</h3>
+            <a href="hotel.html"><img src="/public/img/depositphotos_24553989-stock-photo-hotel.jpg" alt="Réservation d'Hôtel"></a>
+            <p>Trouvez et réservez les meilleurs hôtels. Cliquez <a href="hotel.html">ici</a> pour réserver.</p>
+        </div>
+
+        <div class="service">
+            <h3>Réservation de Voiture</h3>
+            <a href="car.html"><img src="/public/img/depositphotos_52489449-stock-photo-man-offering-a-car-key.jpg" alt="Réservation de Voiture"></a>
+            <p>Louez une voiture pour vos déplacements. Cliquez <a href="car.html">ici</a> pour réserver.</p>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Réservez votre Voyage. Tous droits réservés.</p>
+        <p>
+            <a href="contact.html">Contact</a> | 
+            <a href="privacy.html">Politique de confidentialité</a>
+        </p>
+    </footer>
+    <script>
+        let currentService = 0;
+        const services = document.querySelectorAll('.service');
+        
+        function changeService(direction) {
+            services[currentService].classList.remove('active');
+            currentService = (currentService + direction + services.length) % services.length;
+            services[currentService].classList.add('active');
+        }
+    </script>
+</body>
+</html>

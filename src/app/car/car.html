@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <title>Réservation de Voiture</title>
+</head>
+<body>
+    <header class="header">
+        <h1>Réservez votre Voyage</h1>
+    </header>
+    <nav class="nav">
+        <div class="logo">
+            <a href="home.html"><span>Camer</span>Go</a>
+        </div>
+        <div class="nav-links">
+            <a href="home.html">Accueil</a>
+            <a href="flight.html">Réservation de Vol</a>
+            <a href="hotel.html">Réservation d'Hôtel</a>
+            <a href="car.html">Réservation de Voiture</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Réservation de Voiture</h2>
+        <form action="/submit-car-reservation.php" method="post" onsubmit="return validateCarForm()">
+            <label for="pickup-location">Lieu de prise en charge :</label>
+            <input type="text" id="pickup-location" name="pickup-location" required><br><br>
+            
+            <label for="return-location">Lieu de retour :</label>
+            <input type="text" id="return-location" name="return-location" required><br><br>
+            
+            <label for="pickup-date">Date de prise en charge :</label>
+            <input type="date" id="pickup-date" name="pickup-date" required><br><br>
+            
+            <label for="return-date">Date de retour :</label>
+            <input type="date" id="return-date" name="return-date" required><br><br>
+            
+            <label for="car-type">Type de voiture :</label>
+            <select id="car-type" name="car-type" required>
+                <option value="compact">Compacte</option>
+                <option value="sedan">Berline</option>
+                <option value="suv">SUV</option>
+                <option value="van">Fourgonnette</option>
+            </select><br><br>
+            
+            <button type="submit">Réserver</button>
+        </form>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Réservez votre Voyage. Tous droits réservés.</p>
+        <p>
+            <a href="contact.html">Contact</a> | 
+            <a href="privacy.html">Politique de confidentialité</a>
+        </p>
+    </footer>
+    <script>
+        function validateCarForm() {
+            const pickupLocation = document.getElementById('pickup-location').value;
+            const returnLocation = document.getElementById('return-location').value;
+            const pickupDate = document.getElementById('pickup-date').value;
+            const returnDate = document.getElementById('return-date').value;
+            const carType = document.getElementById('car-type').value;
+
+            if (!pickupLocation || !returnLocation || !pickupDate || !returnDate || !carType) {
+                alert("Veuillez remplir tous les champs.");
+                return false;
+            }
+
+            const pickupDateObj = new Date(pickupDate);
+            const returnDateObj = new Date(returnDate);
+
+            if (pickupDateObj > returnDateObj) {
+                alert("La date de prise en charge doit être antérieure à la date de retour.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

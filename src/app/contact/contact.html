@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <title>Contact</title>
+    <style>
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Réservez votre Voyage</h1>
+    </header>
+    <nav class="nav">
+        <div class="logo">
+            <a href="home.html"><span>Camer</span>Go</a>
+        </div>
+        <div class="nav-links">
+            <a href="home.html">Accueil</a>
+            <a href="flight.html">Réservation de Vol</a>
+            <a href="hotel.html">Réservation d'Hôtel</a>
+            <a href="car.html">Réservation de Voiture</a>
+            <a href="#contact.html">Contact</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Contact</h2>
+        <p>Pour toute question ou assistance, veuillez nous contacter :</p>
+        <form action="/submit-contact-form.php" method="post">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" required><br><br>
+            
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="subject">Sujet :</label>
+            <input type="text" id="subject" name="subject" required><br><br>
+            
+            <label for="message">Message :</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br><br>
+            
+            <button type="submit">Envoyer</button>
+        </form>
+        
+        <p>Email : contact@reservation-voyage.com<br>
+        Téléphone : +33 123 456 789</p>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Réservez votre Voyage. Tous droits réservés.</p>
+        <p>
+            <a href="contact.html">Contact</a> | 
+            <a href="privacy.html">Politique de confidentialité</a>
+        </p>
+    </footer>
+    <script>
+        function validateContactForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !subject || !message) {
+                alert("Veuillez remplir tous les champs.");
+                return false;
+            }}
+
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email)) {
+                alert("Veuillez entrer une adresse email valide.");
+                return false;
+            }
+
+            return true; 
+    </script>
+</body>
+</html>
