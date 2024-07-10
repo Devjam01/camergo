@@ -2,7 +2,7 @@ export default function Home(): JSX.Element {
     return (
       <>
         <div className="container">
-          <h2 class="voyage">Bienvenue sur votre site de réservation de voyage!</h2>
+          <h2 className="voyage">Bienvenue sur votre site de réservation de voyage!</h2>
           <p>
             Nous vous aidons à réserver vos voyages facilement et rapidement.
             Que ce soit pour un vol, un hôtel ou une voiture de location, nous
