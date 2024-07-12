@@ -1,3 +1,10 @@
+/* Ce code est une configuration JSON typiquement utilisée dans un projet Next.js. 
+La ligne "extends": "next/core-web-vitals" indique que cette configuration hérite des règles définies dans le fichier 
+"core-web-vitals" spécifique à Next.js. Cela permet d'appliquer des règles prédéfinies concernant les Core Web Vitals, 
+des métriques essentielles pour évaluer la performance des applications web en termes de chargement, de réactivité et de stabilité visuelle. 
+En utilisant cette configuration, les développeurs peuvent optimiser automatiquement leurs applications pour respecter 
+les meilleures pratiques en matière de performance web recommandées par Next.js.
+*/
 {
   "extends": "next/core-web-vitals"
 }

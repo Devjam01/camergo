@@ -1,3 +1,5 @@
+# Ce texte sert à orienter les utilisateurs et les développeurs sur la configuration initiale, l'utilisation, et le déploiement d'une application Next.js, en fournissant des instructions claires et des ressources pour approfondir la compréhension et améliorer l'expérience de développement.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

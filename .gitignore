@@ -1,3 +1,8 @@
+#Ce fichier .gitignore spécifie les fichiers et répertoires à ignorer lors de l'ajout de modifications
+ dans un dépôt Git, garantissant ainsi que les fichiers générés, les dépendances et autres artefacts
+  non essentiels ne sont pas suivis par le système de contrôle de version.
+
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
