@@ -1,4 +1,4 @@
-export default function Home(): JSX.Element {
+export default function App(): JSX.Element {
   return (
     <>
       {/* Début du contenu JSX */}

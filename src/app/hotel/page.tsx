@@ -1,17 +1,47 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+type Hotel = {
+  id_hotel: number;
+  nom: string;
+  adresse: string;
+  ville: string;
+  pays: string;
+  nombre_etoiles: string;
+  services: string;
+  description: string;
+  prix_nuit: number;
+  telephone: string;
+}
+
+type FormatData = {
+  hotelId?: number;
+  checkInDate: string;
+  checkOutDate: string;
+  guests: number;
+  roomType: 'standard' | 'deluxe';
+};
 
 // Définit et exporte le composant Home, qui retourne un élément JSX
-export default function Home(): JSX.Element {
+export default function HotelPage(): JSX.Element {
   // Déclare un état formData pour gérer les données du formulaire
-  const [formData, setFormData] = useState({
-    hotelName: '',
-    checkInDate: '',
-    checkOutDate: '',
+  const [hotels, setHotels] = useState<Hotel[]>([]);
+  const [formData, setFormData] = useState<FormatData>({
+    hotelId: undefined,
+    checkInDate: "",
+    checkOutDate: "",
     guests: 1,
-    roomType: 'standard'
+    roomType: "standard",
   });
+
+  useEffect(() => {
+    fetch(`/api/hotel`).then(response => response.json()).then(data => {
+      if (!data) return;
+      setHotels(data.hotels as Hotel[]);
+      console.log('hotels', data.hotels);
+    });
+  }, []);
 
   // Fonction handleChange pour mettre à jour les données du formulaire en fonction des changements
   function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
@@ -24,10 +54,10 @@ export default function Home(): JSX.Element {
 
   // Fonction validateHotelForm pour valider les données du formulaire avant soumission
   function validateHotelForm() {
-    const { hotelName, checkInDate, checkOutDate, guests } = formData;
+    const { hotelId, checkInDate, checkOutDate, guests } = formData;
 
     // Vérifie si tous les champs requis sont remplis et si le nombre de personnes est supérieur à zéro
-    if (!hotelName || !checkInDate || !checkOutDate || guests <= 0) {
+    if (!hotelId || !checkInDate || !checkOutDate || guests <= 0) {
       alert("Veuillez remplir tous les champs correctement.");
       return false;
     }
@@ -75,51 +105,60 @@ export default function Home(): JSX.Element {
         <h2 className="hotel">Réserver votre Hôtel</h2>
         <form onSubmit={submitForm}>
           {/* Champs de formulaire contrôlés par React avec gestion des événements onChange */}
-          <label htmlFor="hotelName">Nom de l'Hôtel :</label>
-          <input 
-            type="text" 
-            id="hotelName" 
-            name="hotelName" 
-            value={formData.hotelName}
-            onChange={handleChange}
-            required 
-          />
-          
-          <label htmlFor="checkInDate">Date d'arrivée :</label>
-          <input 
-            type="date" 
-            id="checkInDate" 
-            name="checkInDate" 
+          <label htmlFor="hotelName">Sélectionnez l&apos;Hôtel :</label>
+          <select
+            name="hotel"
+            title="title"
+            onChange={(event) => {
+              formData.hotelId = Number.parseInt(event.target.value, 10);
+              setFormData({
+                ...formData,
+              });
+            }}
+          >
+            {hotels && hotels.map((hotel) => (
+              <option key={hotel.id_hotel} value={hotel.id_hotel}>
+                {hotel.nom}
+              </option>
+            ))}
+          </select>
+          {/* TODO: USe a select to show all hotels here, and then pass the id_hotel to the /api/reservation route */}
+
+          <label htmlFor="checkInDate">Date d&apos;arrivée :</label>
+          <input
+            type="date"
+            id="checkInDate"
+            name="checkInDate"
             value={formData.checkInDate}
             onChange={handleChange}
-            required 
+            required
           />
-          
+
           <label htmlFor="checkOutDate">Date de départ :</label>
-          <input 
-            type="date" 
-            id="checkOutDate" 
-            name="checkOutDate" 
+          <input
+            type="date"
+            id="checkOutDate"
+            name="checkOutDate"
             value={formData.checkOutDate}
             onChange={handleChange}
-            required 
+            required
           />
-          
+
           <label htmlFor="guests">Nombre de personnes :</label>
-          <input 
-            type="number" 
-            id="guests" 
-            name="guests" 
+          <input
+            type="number"
+            id="guests"
+            name="guests"
             value={formData.guests}
             onChange={handleChange}
-            min="1" 
-            required 
+            min="1"
+            required
           />
-          
+
           <label htmlFor="roomType">Type de chambre :</label>
-          <select 
-            id="roomType" 
-            name="roomType" 
+          <select
+            id="roomType"
+            name="roomType"
             value={formData.roomType}
             onChange={handleChange}
             required
@@ -129,7 +168,9 @@ export default function Home(): JSX.Element {
             <option value="deluxe">Deluxe</option>
             <option value="suite">Suite</option>
           </select>
-          
+
+          {/* Choose the room */}
+
           {/* Bouton de soumission du formulaire */}
           <button type="submit">Réserver</button>
         </form>

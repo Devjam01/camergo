@@ -23,7 +23,7 @@ import { useEffect, useState } from "react";
 //   method: 'POST'
 // })
 
-export default function Home(): JSX.Element {
+export default function Contact(): JSX.Element {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 

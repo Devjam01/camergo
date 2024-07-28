@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // Définit et exporte le composant Home, qui retourne un élément JSX
-export default function Home(): JSX.Element {
+export default function Flight(): JSX.Element {
   // Déclare un état formData pour gérer les données du formulaire
   const [formData, setFormData] = useState({
     departure: '',
